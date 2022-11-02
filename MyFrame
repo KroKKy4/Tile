@@ -3,7 +3,7 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyFrame  extends JFrame {
+public class MyFrame extends JFrame {
 
     MyPanel panel;
     Toolkit toolkit= Toolkit.getDefaultToolkit();
@@ -12,8 +12,8 @@ public class MyFrame  extends JFrame {
     public MyFrame(){
         panel = new MyPanel();
         add(panel);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setBounds(dimension.width/2-500,dimension.height/2-175,460, 420);
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //закрытие окна
+        setBounds(dimension.width/2-500,dimension.height/2-175,500, 500); // dimensions - размерность окна
         setTitle("Tile");
         setVisible(true);
     }
