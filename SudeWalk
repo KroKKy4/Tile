@@ -1,0 +1,24 @@
+package com.company;
+
+public class Sidewalk  extends Tile {
+    private int borderX = 5;
+    private int borderY = 2;
+    private double borderPrice = 5;
+    public Sidewalk(int sizeFloorX, int sizeFloorY, int sizeOneX, int sizeOneY, int price) {
+        super(sizeFloorX, sizeFloorY, sizeOneX, sizeOneY,price);
+    }
+    @Override
+    public String getname(){
+        return "Тротуар";
+    }
+    @Override
+    public double getAmountTile(){
+        double res = super.getAmountTile();
+        int kol=1;
+        while (kol*borderX<super.getSizeFloorX())kol++;
+        return res+kol*borderPrice;
+    }
+    public Sidewalk(){
+        super();
+    }
+}
