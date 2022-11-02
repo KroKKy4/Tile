@@ -1,0 +1,87 @@
+package com.company;
+
+public abstract class Tile {
+    private double sizeFloorX;
+    private double sizeFloorY;
+    private double sizeOneX;
+    private double sizeOneY;
+    private int amountX;
+    private int amountY;
+    private double price;
+    private double [][][] arrM;
+    public Tile(){
+        this.sizeFloorX = 0;
+        this.sizeFloorY = 0;
+        this.sizeOneX = 0;
+        this.sizeOneY = 0;
+        this.price = 0;
+        loading();
+    }
+    public Tile(int sizeFloorX, int sizeFloorY, int sizeOneX, int sizeOneY, int price){
+        this.sizeFloorX = sizeFloorX;
+        this.sizeFloorY = sizeFloorY;
+        this.sizeOneX = sizeOneX;
+        this.sizeOneY = sizeOneY;
+        this.price = price;
+        loading();
+    }
+    private void loading(){
+        amountY = (int)Math.ceil(sizeFloorY/sizeOneY);
+        amountX = (int)Math.ceil(sizeFloorX/sizeOneX);
+        arrM =new double[amountX][amountY][3];
+        for (int i = 0; i < amountX; i++) {
+            for (int j = 0; j < amountY; j++) {
+                arrM[i][j][0]=sizeOneX;
+                arrM[i][j][1]=sizeOneY;
+                arrM[i][j][2]=price;
+            }
+        }
+    }
+    public double getAmountTile() {
+        double sum =0;
+        for (int i = 0; i < amountX; i++) {
+            for (int j = 0; j < amountY; j++) {
+                sum+=arrM[i][j][2];
+            }
+        }
+        return sum;
+    }
+    public String getname(){
+        return "-------";
+    }
+
+    public void setSizeFloorX(int sizeFloorX) {
+        this.sizeFloorX = sizeFloorX;
+    }
+
+    public void setSizeFloorY(int sizeFloorY) {
+        this.sizeFloorY = sizeFloorY;
+    }
+
+    public void setSizeOneX(int sizeOneX) {
+        this.sizeOneX = sizeOneX;
+    }
+
+    public void setSizeOneY(int sizeOneY) {
+        this.sizeOneY = sizeOneY;
+    }
+
+    public double getSizeFloorX() {
+        return sizeFloorX;
+    }
+
+    public void changeN (int x, int y, double sizeOneX, double sizeOneY, double price){
+        arrM [x][y][0]=sizeOneX;
+        arrM [x][y][1]=sizeOneY;
+        arrM [x][y][2]=price;
+    }
+
+    public void setFloor(double sizeFloorX, double sizeFloorY, double sizeOneX, double sizeOneY, double price){
+        this.sizeOneY = sizeOneY;
+        this.sizeOneX = sizeOneX;
+        this.sizeFloorY = sizeFloorY;
+        this.sizeFloorX = sizeFloorX;
+        this.price = price;
+        loading();
+    }
+}
