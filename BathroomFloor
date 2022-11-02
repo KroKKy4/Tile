@@ -1,0 +1,19 @@
+package com.company;
+
+public class BathroomFloor extends Tile {
+    public BathroomFloor(int sizeFloorX, int sizeFloorY, int sizeOneX, int sizeOneY, int price) {
+        super(sizeFloorX, sizeFloorY, sizeOneX, sizeOneY,price);
+    }
+
+    public BathroomFloor() {
+        super();
+    }
+
+    @Override
+    public String getname(){
+        return "Ванная";
+    }
+}
+
+
+https://drive.google.com/file/d/100-j_fR2jxjumHMUS7DxElNmA_cGr0_a/view
