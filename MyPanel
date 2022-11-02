@@ -10,9 +10,13 @@ public class MyPanel extends JPanel{
     private Tile floor;
     private int i = 0;
 
+    /*
+    Устанавливаем дефолтный размер для каждого квадратика в интерфейсе через columns
+    Добавляем текст в интерфейс
+    */
     public MyPanel(){
         floor = new BathroomFloor();
-        setBackground(Color.GREEN);
+        setBackground(Color.CYAN);
         JTextField xF = new JTextField("",4);
         JTextField yF = new JTextField("",4);
         JLabel jLFloor = new JLabel();
@@ -43,9 +47,14 @@ public class MyPanel extends JPanel{
         jLTile.add(priceL);
         add(jLTile);
 
+        /*
+        Добавляем кликабельные кнопки, подгоняем их размеры
+        Парсим данные, введённые пользователем из str в double, удаляем пробелы в начале и в конце записи
+        для более удобного подсчёта
+        */
 
         result = new JLabel("Resultat");
-        result.setOpaque(true);
+        result.setOpaque(true); //добавляет красивую рамку за result`ом
         result.setPreferredSize(new Dimension(410,100));
         result.setFont(new Font("TimesRoman", Font.PLAIN, 100));
         JButton button = new JButton("Посчитаем");
@@ -60,6 +69,10 @@ public class MyPanel extends JPanel{
         add(button);
         add(result);
         JLabel floormenu = new JLabel(floor.getname());
+
+        /*
+        Добавляем кнопки для перелистывания между плиткой в ванной и бордюром
+        */
 
         JButton left =new JButton("<----");
         left.addActionListener(new ActionListener() {
@@ -81,6 +94,10 @@ public class MyPanel extends JPanel{
                 System.out.println(floor.getname());
             }
         });
+
+        /*
+            Изменение n-ой плитки в нашем изделии
+        */
 
         JButton peres = new JButton("Пересчитать");
         JTextField xN = new JTextField("",3);
@@ -121,6 +138,12 @@ public class MyPanel extends JPanel{
         add(right);
 
     }
+
+
+    /*
+        loading - считаем клики по кнопке ---> в i для изменения изделия
+    */
+
     private void loading(){
         switch (i){
             case 0: floor = new BathroomFloor(10,10, 10,10,10);break;
