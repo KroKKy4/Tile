@@ -5,6 +5,8 @@ public class BathroomFloor extends Tile {
         super(sizeFloorX, sizeFloorY, sizeOneX, sizeOneY,price);
     }
 
+    //просто перекидываем данные из Tile.
+    
     public BathroomFloor() {
         super();
     }
