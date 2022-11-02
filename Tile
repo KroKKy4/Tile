@@ -25,6 +25,13 @@ public abstract class Tile {
         this.price = price;
         loading();
     }
+
+    /*
+    SizeFloor - размер самого пола; SizeOne - размер одной плиткиплитки;
+    loading - считает сколько помещается плитки по ширине и высоте. В двоичный массив добавляются параметры плитки, каждая плитка запоминает свои размеры.
+    Чтобы изменить n-ую плитку нужно, чтобы каждая плитка знала свои размеры
+     */
+
     private void loading(){
         amountY = (int)Math.ceil(sizeFloorY/sizeOneY);
         amountX = (int)Math.ceil(sizeFloorX/sizeOneX);
@@ -37,6 +44,9 @@ public abstract class Tile {
             }
         }
     }
+
+    //GetAmountTile - тотал цена пола, проходит по массиву и считает всю цену плитки.
+
     public double getAmountTile() {
         double sum =0;
         for (int i = 0; i < amountX; i++) {
@@ -46,6 +56,7 @@ public abstract class Tile {
         }
         return sum;
     }
+
     public String getname(){
         return "-------";
     }
@@ -70,12 +81,15 @@ public abstract class Tile {
         return sizeFloorX;
     }
 
+
+    //изменение n-ой плитки
     public void changeN (int x, int y, double sizeOneX, double sizeOneY, double price){
         arrM [x][y][0]=sizeOneX;
         arrM [x][y][1]=sizeOneY;
         arrM [x][y][2]=price;
     }
 
+    //Перезаписывает значения
     public void setFloor(double sizeFloorX, double sizeFloorY, double sizeOneX, double sizeOneY, double price){
         this.sizeOneY = sizeOneY;
         this.sizeOneX = sizeOneX;
