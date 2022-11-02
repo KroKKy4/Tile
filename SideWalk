@@ -12,6 +12,9 @@ public class Sidewalk  extends Tile {
         return "Тротуар";
     }
     @Override
+    //поскольку у бордюра есть собственные размеры, то нужно посчитать сколько будет плитки без учета бордюра
+
+    //getAmountTile - новые расчёты для цены бордюра; getSizeFloorX - возвращает весь размер пола по X
     public double getAmountTile(){
         double res = super.getAmountTile();
         int kol=1;
