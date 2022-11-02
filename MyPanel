@@ -1,0 +1,132 @@
+package com.company;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MyPanel extends JPanel{
+    private JLabel result;
+    private Tile floor;
+    private int i = 0;
+
+    public MyPanel(){
+        floor = new BathroomFloor();
+        setBackground(Color.GREEN);
+        JTextField xF = new JTextField("",4);
+        JTextField yF = new JTextField("",4);
+        JLabel jLFloor = new JLabel();
+        jLFloor.setOpaque(true);
+        jLFloor.setPreferredSize(new Dimension(150,100));
+        jLFloor.setBackground(new Color(172, 148, 46,100));
+        jLFloor.setLayout(new FlowLayout());
+        jLFloor.add(new JLabel("--Размер пола--"));
+        jLFloor.add(new JLabel("Ширина: "));
+        jLFloor.add(xF);
+        jLFloor.add(new JLabel("Высота: "));
+        jLFloor.add(yF);
+        add(jLFloor);
+        JTextField xL = new JTextField("",4);
+        JTextField yL = new JTextField("",4);
+        JTextField priceL = new JTextField("",4);
+        JLabel jLTile = new JLabel();
+        jLTile.setOpaque(true);
+        jLTile.setPreferredSize(new Dimension(150,100));
+        jLTile.setBackground(new Color(255, 97, 97,100));
+        jLTile.setLayout(new FlowLayout());
+        jLTile.add(new JLabel("--Размер плитки--"));
+        jLTile.add(new JLabel("Ширина: "));
+        jLTile.add(xL);
+        jLTile.add(new JLabel("Высота: "));
+        jLTile.add(yL);
+        jLTile.add(new JLabel("Цена $: "));
+        jLTile.add(priceL);
+        add(jLTile);
+
+
+        result = new JLabel("Resultat");
+        result.setOpaque(true);
+        result.setPreferredSize(new Dimension(410,100));
+        result.setFont(new Font("TimesRoman", Font.PLAIN, 100));
+        JButton button = new JButton("Посчитаем");
+        button.setPreferredSize(new Dimension(100,50));
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                floor.setFloor(Double.parseDouble(xF.getText().trim()),Double.parseDouble(yF.getText().trim()),Double.parseDouble(xL.getText().trim()),Double.parseDouble(yL.getText().trim()),Double.parseDouble(priceL.getText().trim()));
+                result.setText(Double.toString(floor.getAmountTile())+"$");
+            }
+        });
+        add(button);
+        add(result);
+        JLabel floormenu = new JLabel(floor.getname());
+
+        JButton left =new JButton("<----");
+        left.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                i--;
+                loading();
+                floormenu.setText(String.valueOf(floor.getname()));
+                System.out.println(floor.getname());
+            }
+        });
+        JButton right =new JButton("---->");
+        right.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                i++;
+                loading();
+                floormenu.setText(String.valueOf(floor.getname()));
+                System.out.println(floor.getname());
+            }
+        });
+
+        JButton peres = new JButton("Пересчитать");
+        JTextField xN = new JTextField("",3);
+        JTextField yN = new JTextField("",3);
+        JTextField xR = new JTextField("",4);
+        JTextField yR = new JTextField("",4);
+        JTextField priceR = new JTextField("",4);
+        JLabel jRTile = new JLabel();
+        jRTile.setOpaque(true);
+        jRTile.setPreferredSize(new Dimension(150,160));
+        jRTile.setBackground(new Color(255, 97, 97,100));
+        jRTile.setLayout(new FlowLayout());
+        jRTile.add(new JLabel("-----Изменение n-ой-----"));
+        jRTile.add(new JLabel("x: "));
+        jRTile.add(xN);
+        jRTile.add(new JLabel("y: "));
+        jRTile.add(yN);
+        jRTile.add(new JLabel("Ширина: "));
+        jRTile.add(xR);
+        jRTile.add(new JLabel("Высота: "));
+        jRTile.add(yR);
+        jRTile.add(new JLabel("Цена $: "));
+        jRTile.add(priceR);
+        jRTile.add(peres);
+        add(jRTile);
+        peres.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                floor.changeN(Integer.parseInt(xN.getText().trim()),Integer.parseInt(yN.getText().trim()),Double.parseDouble(xR.getText().trim()),Double.parseDouble(yR.getText().trim()),Double.parseDouble(priceR.getText().trim()));
+                result.setText(String.valueOf(floor.getAmountTile())+"$");
+            }
+        });
+
+
+
+        add(left);
+        add(floormenu);
+        add(right);
+
+    }
+    private void loading(){
+        switch (i){
+            case 0: floor = new BathroomFloor(10,10, 10,10,10);break;
+            case 1: floor =  new Sidewalk(10,10, 10,10,10);break;
+            case -1: i =  1; floor =  new Sidewalk(10,10, 10,10,10);break;
+            case 2: i = 0; floor =  new BathroomFloor(10,10, 10,10,10);break;
+        }
+    }
+}
